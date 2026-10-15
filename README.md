@@ -48,7 +48,11 @@ PostgreSQL          Private File Storage
 
 - Intilize project folder
 - Database Connection
-- User , Category , Documents Table created
+- User , Category , Documents Models
+- User , Category , Documents Schemas
+- User and Category Routers
+- Authentication for user
+- Authorization in category 
 
 **Guiding principle:** Build a small, reliable document vault first. Protecting each user's documents is more important than adding advanced features.
 
