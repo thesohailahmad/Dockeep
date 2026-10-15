@@ -1,5 +1,6 @@
 from sqlalchemy import Column,Integer,String , TIMESTAMP , func
 from app.db.base import Base
+from sqlalchemy.orm import relationship
 
 #class for user model
 #table to store user data
@@ -24,3 +25,6 @@ class UserModel(Base):
         server_default=func.now(),
         onupdate=func.now()
     )
+    documents = relationship("DocumentModels", 
+    back_populates="user",
+    cascade="all, delete-orphan")

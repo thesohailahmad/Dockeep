@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, TIMESTAMP, ForeignKey, func
 from app.db.base import Base
-
+from sqlalchemy.orm import relationship
 
 class CategoryModel(Base):
     __tablename__ = "categories"
@@ -19,3 +19,6 @@ class CategoryModel(Base):
         nullable=False,
         server_default=func.now(),
     )
+
+    documents = relationship("DocumentModels", 
+    back_populates="category") 
