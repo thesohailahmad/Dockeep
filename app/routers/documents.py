@@ -46,8 +46,8 @@ status_code= status.HTTP_201_CREATED
 
 async def upload_document(
     title: Annotated[str, Form(..., min_length=1, max_length=255)],
-    file: Annotated[UploadFile, File(...)],
-    description: Annotated[str | None,  Form( max_length=255)] = None,
+    file: Annotated[UploadFile, File()],
+    description: Annotated[str | None,  Form(max_length=255)] = None,
     category_id: Annotated[int |  None , Form()] = None,
     db: Session = Depends(get_db),
     current_user: UserModel = Depends(get_current_user)):
@@ -67,7 +67,7 @@ async def upload_document(
                 detail="File size exceeds the maximum limit of 20MB"
             )
 
-        if size == 0:
+    if size == 0:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="File is empty"
@@ -162,7 +162,7 @@ def update_document(
         )
     update_data = payload.model_dump(exclude_unset=True)
     if "title" in update_data and update_data["title"] is None:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "title cannot be null")
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "title cannot be null")
     
     if update_data.get("category_id") is not None:
         get_category_by_id(db, update_data["category_id"], current_user.user_id)
