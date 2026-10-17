@@ -6,6 +6,7 @@ from app.models.document_model import DocumentModels
 from app.models.category_model import CategoryModel
 from app.routers import users
 from app.routers import categories
+from app.routers import documents
 
 Base.metadata.create_all(engine)
 
@@ -17,6 +18,7 @@ app = FastAPI(
 
 app.include_router(users.router)
 app.include_router(categories.router)
+app.include_router(documents.router)
 
 @app.get("/")
 def root():
