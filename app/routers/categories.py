@@ -53,7 +53,7 @@ status_code=status.HTTP_201_CREATED
 def create_category(payload: CategoryCreate,db: Session = Depends(get_db),current_user: UserModel = Depends(get_current_user)):
     name = payload.name.strip()
     if name is None or name == "":
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, 
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, 
         detail="Name cannot be blank")
 
     check_name(db, current_user.user_id, name)
