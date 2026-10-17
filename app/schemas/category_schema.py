@@ -12,7 +12,7 @@ class CategoryCreate(CategoryBase):
 
 
 class CategoryUpdate(BaseModel):
-    name : Optional[Annotated[str , Field(None,min_length=1 , max_length=100 , title="Category Name" , description="Name of the category")]] = None
+    name : Annotated[Optional[str], Field(None,min_length=1 , max_length=100 , title="Category Name" , description="Name of the category")] = None
 
 
 class CategoryResponse(CategoryBase):

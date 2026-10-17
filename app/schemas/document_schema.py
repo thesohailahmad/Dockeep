@@ -5,8 +5,8 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class DocumentBase(BaseModel):
     title : Annotated[str , Field(...,min_length=1 , max_length=255 , title="Document Title" , description="Title of the document")]
-    description: Optional[Annotated[str , Field(None, max_length=255 , title="Document Description" , description="Description of the document")]] = None
-    category_id: Optional[Annotated[int , Field(None)]] = None  # nullable: ON DELETE SET NULL
+    description: Annotated[Optional[str], Field(None, max_length=255 , title="Document Description" , description="Description of the document")] = None
+    category_id: Annotated[Optional[int], Field(None)] = None  # nullable: ON DELETE SET NULL
 
 
 class DocumentCreate(DocumentBase):
@@ -14,9 +14,9 @@ class DocumentCreate(DocumentBase):
 
 
 class DocumentUpdate(BaseModel):
-    title: Optional[Annotated[str , Field(None, min_length=1, max_length=255 , title="Document Title" , description="Title of the document")]] = None
-    description: Optional[Annotated[str , Field(None, max_length=255 , title="Document Description" , description="Description of the document")]] = None
-    category_id: Optional[Annotated[int , Field(None)]] = None
+    title: Annotated[Optional[str], Field(None, min_length=1, max_length=255 , title="Document Title" , description="Title of the document")] = None
+    description: Annotated[Optional[str], Field(None, max_length=255 , title="Document Description" , description="Description of the document")] = None
+    category_id: Annotated[Optional[int], Field(None)] = None
 
 
 class DocumentResponse(DocumentBase):
