@@ -28,16 +28,16 @@ def get_current_user(token: str = Depends(oauth2_schema) , db : Session = Depend
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Could not validate credentials"
             )
-    user_id  = payload.get('sub')
+    id  = payload.get('sub')
     
-    if user_id is None:
+    if id is None:
          raise HTTPException(
                     status_code=status.HTTP_401_UNAUTHORIZED,
                     detail="Invalid Token credentials"
             )
     
     user = db.query(UserModel).filter(
-       UserModel.id == int(user_id)
+       UserModel.user_id == int(id)
     ).first()
 
     if user is None:
