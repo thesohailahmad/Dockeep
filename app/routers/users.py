@@ -75,7 +75,7 @@ def login_user(data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         detail="Invalid username or password"
     )
     access_token = create_access_token(
-    {"sub": str(user.id)}
+    {"sub": str(user.user_id)}
 )
     return {
     "access_token": access_token,
