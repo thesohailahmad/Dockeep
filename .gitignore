@@ -6,9 +6,6 @@ __pycache__/
 .ruff_cache/
 private_storage/*
 !private_storage/.gitkeep
-docs/
-design.md/
-PRD.md/
 storage/
 documents/
 conftest.py
